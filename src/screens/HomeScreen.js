@@ -10,6 +10,7 @@ import {
   SafeAreaView,
   Pressable,
 } from "react-native";
+//시발
 
 //const Stack = createStackNavigator();
 
