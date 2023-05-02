@@ -1,9 +1,8 @@
 import React, { Image, View } from "react-native";
 import styled from "styled-components/native";
 import { Caption1, Display2 } from "../../static/text";
-import { main } from "../../styles/Color";
 
-export default function ChooseMoney() {
+export default function ChooseMoney({ navigation }) {
   return (
     <Container>
       <HeaderWrapper>
@@ -60,6 +59,14 @@ const MoneyInput = styled.TextInput`
     border-right-width: 0;
     border-top-width: 0;
     border-bottom-width: 50px;
-    border-bottom-color: ${main};
   }
+`;
+const NextBtn = require("../../assets/onBoarding/Nextbtn.png");
+const NextBtnContainer = styled.TouchableOpacity`
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 350px;
 `;

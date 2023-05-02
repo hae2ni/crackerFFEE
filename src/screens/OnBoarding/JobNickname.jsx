@@ -1,8 +1,8 @@
-import React from "react-native";
+import React, { Image } from "react-native";
 import styled from "styled-components/native";
 import { Display2, Caption1 } from "../../static/text";
 
-export default function JobNickname() {
+export default function JobNickname({ navigation }) {
   return (
     <Container>
       <HeaderWrapper>
@@ -20,6 +20,9 @@ export default function JobNickname() {
           placeholderTextColor="#CCCCCC"
         />
       </NicknameInputContainer>
+      <NextBtnContainer onPress={() => navigation.navigate("ChooseJob")}>
+        <Image source={NextBtn} />
+      </NextBtnContainer>
     </Container>
   );
 }
@@ -58,6 +61,14 @@ const NicknameInput = styled.TextInput`
     border-right-width: 0;
     border-top-width: 0;
     border-bottom-width: 50px;
-    border-bottom-color: ${main};
   }
+`;
+const NextBtn = require("../../assets/onBoarding/Nextbtn.png");
+const NextBtnContainer = styled.TouchableOpacity`
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 350px;
 `;

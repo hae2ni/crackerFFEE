@@ -125,7 +125,7 @@ export default function ChooseTime({ navigation }) {
           )}
         </TimePick>
       </MainContainer>
-      <NextBtnContainer onPress={() => navigation.navigate("ChooseTime")}>
+      <NextBtnContainer onPress={() => navigation.navigate("ChooseMoney")}>
         <Image source={NextBtn} />
       </NextBtnContainer>
     </Container>

@@ -14,7 +14,7 @@ const JOB_DATA = [
   "기타",
 ];
 
-export default function ChooseJob() {
+export default function ChooseJob({ navigation }) {
   const [selectedJobIndex, setSelectedJobIndex] = useState(-1);
   const [isTouched, setIsTouched] = useState(
     Array(JOB_DATA.length).fill(false)
@@ -51,6 +51,9 @@ export default function ChooseJob() {
       </MainContainer>
       <MainContainer />
       <JobListContainer>{jobList}</JobListContainer>
+      <NextBtnContainer onPress={() => navigation.navigate("ChooseTime")}>
+        <Image source={NextBtn} />
+      </NextBtnContainer>
     </Container>
   );
 }
@@ -94,4 +97,13 @@ const JobListContainer = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+const NextBtn = require("../../assets/onBoarding/Nextbtn.png");
+const NextBtnContainer = styled.TouchableOpacity`
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 350px;
 `;
