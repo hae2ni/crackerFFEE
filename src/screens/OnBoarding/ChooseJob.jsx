@@ -2,40 +2,42 @@ import React, { View, Text, Image, TouchableOpacity } from "react-native";
 import styled from "styled-components";
 import { Display2 } from "../../static/text";
 import { useState } from "react";
-import { main } from "../../styles/Color";
-import "../../styles/ChooseJob.scss";
+
+const JOB_DATA = [
+  "카페 베이커리",
+  "편의점",
+  "레스토랑",
+  "학원·과외",
+  "배달",
+  "물류·포장",
+  "공연·전시스탭",
+  "기타",
+];
 
 export default function ChooseJob() {
-  const JOB_DATA = ["카페", "ㅇ", "ㅇㄴ", "ㄴㅇㄹ"];
-  const [btnActive, setBtnActive] = useState(
+  const [selectedJobIndex, setSelectedJobIndex] = useState(-1);
+  const [isTouched, setIsTouched] = useState(
     Array(JOB_DATA.length).fill(false)
   );
 
-  // const JOB_DATA = [
-  //   { name: "카페 베이커리", id: 0 },
-  //   { name: "편의점", id: 1 },
-  //   { name: "레스토랑", id: 2 },
-  //   { name: "학원·과외", id: 3 },
-  //   { name: "배달", id: 4 },
-  //   { name: "물류·포장", id: 5 },
-  //   { name: "공연·전시스탭", id: 6 },
-  //   { name: "기타", id: 7 },
-  // ];
-  const toggleActive = (e) => {
-    setBtnActive((prev) => {
-      return e.target.value;
+  const onPressJob = (index) => {
+    setIsTouched((prev) => {
+      const nextState = [...prev];
+      nextState[index] = !prev[index];
+      return nextState;
     });
+    setSelectedJobIndex(index);
   };
 
-  const jobList = JOB_DATA.map((job, idx) => (
+  const jobList = JOB_DATA.map((job, index) => (
     <JobContainer
-      className={"btn" + (idx == btnActive ? "active" : "")}
-      key={idx}
+      key={index}
       onPress={() => {
-        toggleActive;
+        onPressJob(index);
       }}
+      isTouched={isTouched[index]}
     >
-      <Text>{job}</Text>
+      <JobTouchArea isTouched={isTouched[index]}>{job}</JobTouchArea>
     </JobContainer>
   ));
 
@@ -45,7 +47,7 @@ export default function ChooseJob() {
         <Image source={Headerimg} />
       </HeaderWrapper>
       <MainContainer>
-        <Display2>알바 종류 고DDDDDD르기</Display2>
+        <Display2>알바 종류 고르기</Display2>
       </MainContainer>
       <MainContainer />
       <JobListContainer>{jobList}</JobListContainer>
@@ -64,12 +66,16 @@ const JobContainer = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: red;
+  background-color: ${(props) => (props.isTouched ? "#6100FF" : "#f5f5f5")};
   color: "#858585";
   border-radius: 100px;
   width: 280px;
   height: 48px;
   margin-bottom: 15px;
+`;
+
+const JobTouchArea = styled.Text`
+  color: ${(props) => (props.isTouched ? "white" : "black")};
 `;
 
 const MainContainer = styled.View`
